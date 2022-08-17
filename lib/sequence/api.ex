@@ -1,4 +1,4 @@
-defmodule Sequence do
+defmodule Sequence.Api do
   use GenServer
   @server Sequence.Server
 

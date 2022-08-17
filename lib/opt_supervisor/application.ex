@@ -10,7 +10,7 @@ defmodule OptSupervisor.Application do
     children = [
       # Starts a worker by calling: OptSupervisor.Worker.start_link(arg)
       # {OptSupervisor.Worker, arg}
-      {Sequence, 123}
+      {Sequence.Api, 123}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
