@@ -1,6 +1,14 @@
 defmodule Sequence.Server do
   use GenServer
+
   alias Sequence.Impl
+
+  def start_link(opts) do
+    init_arg = []
+
+    opts = [{:name, :cache} | opts]
+    GenServer.start_link(__MODULE__, init_arg, opts)
+  end
 
   @impl true
   def init(_) do

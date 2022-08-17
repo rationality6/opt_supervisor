@@ -11,8 +11,8 @@ defmodule OptSupervisor.Application do
       # Starts a worker by calling: OptSupervisor.Worker.start_link(arg)
       # {OptSupervisor.Worker, arg}
       {Sequence.Stash, 123},
-      {Sequence.Api, nil},
-      {Stack.Api, []}
+      Sequence.Server,
+      Stack.Api
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
