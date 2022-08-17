@@ -3,12 +3,12 @@ defmodule Sequence.Api do
   @server Sequence.Server
 
   @impl true
-  def init(initial_number) do
-    {:ok, initial_number}
+  def init(_) do
+    {:ok, Sequence.Stash.get()}
   end
 
-  def start_link(current_number) do
-    GenServer.start_link(@server, current_number, name: @server)
+  def start_link(_) do
+    GenServer.start_link(@server, nil, name: @server)
   end
 
   def next_number() do
@@ -29,5 +29,10 @@ defmodule Sequence.Api do
 
   def status() do
     :sys.get_status(@server)
+  end
+
+  @impl true
+  def terminate(_reason, current_number) do
+    Sequence.Stash.update(current_number)
   end
 end

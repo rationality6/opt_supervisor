@@ -3,8 +3,8 @@ defmodule Sequence.Server do
   alias Sequence.Impl
 
   @impl true
-  def init(initial_number) do
-    {:ok, initial_number}
+  def init(_) do
+    {:ok, Sequence.Stash.get()}
   end
 
   @impl true
@@ -31,5 +31,10 @@ defmodule Sequence.Server do
   @impl true
   def format_status(_reason, [_pdict, state]) do
     [data: [{'status', "My current status is '#{inspect(state)}', and I'm happy"}]]
+  end
+
+  @impl true
+  def terminate(_reason, current_number) do
+    Sequence.Stash.update(current_number)
   end
 end

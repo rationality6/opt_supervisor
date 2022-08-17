@@ -10,13 +10,14 @@ defmodule OptSupervisor.Application do
     children = [
       # Starts a worker by calling: OptSupervisor.Worker.start_link(arg)
       # {OptSupervisor.Worker, arg}
-      {Sequence.Api, 123},
+      {Sequence.Stash, 123},
+      {Sequence.Api, nil},
       {Stack.Api, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: OptSupervisor.Supervisor]
+    opts = [strategy: :rest_for_one, name: OptSupervisor.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
