@@ -1,19 +1,24 @@
 defmodule Sequence.Stash do
   use GenServer
 
-  @me __MODULE__
+  # def start_link(initial_number) do
+  #   GenServer.start_link(__MODULE__, initial_number, name: @me)
+  # end
 
-  def start_link(initial_number) do
-    GenServer.start_link(__MODULE__, initial_number, name: @me)
+  def start_link(opts) do
+    init_arg = 123
+
+    opts = [{:name, :stash} | opts]
+    GenServer.start_link(__MODULE__, init_arg, opts)
   end
 
   # api
   def get() do
-    GenServer.call(@me, :get)
+    GenServer.call(:stash, :get)
   end
 
   def update(new_number) do
-    GenServer.cast(@me, {:update, new_number})
+    GenServer.cast(:stash, {:update, new_number})
   end
 
   # server

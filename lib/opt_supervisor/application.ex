@@ -8,11 +8,12 @@ defmodule OptSupervisor.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: OptSupervisor.Worker.start_link(arg)
-      # {OptSupervisor.Worker, arg}
-      {Sequence.Stash, 123},
-      Sequence.Server,
-      Stack.Api
+      # sequence
+      {Sequence.Stash, []},
+      {Sequence.Server, []},
+      # stack
+      # {Stack.Stash, []},
+      {Stack.Server, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
