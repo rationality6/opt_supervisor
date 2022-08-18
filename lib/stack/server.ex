@@ -8,8 +8,8 @@ defmodule Stack.Server do
   end
 
   @impl true
-  def init(list) do
-    {:ok, list}
+  def init(_) do
+    {:ok, Stack.Stash.get()}
   end
 
   @impl true
@@ -25,8 +25,12 @@ defmodule Stack.Server do
     {:reply, tail, tail}
   end
 
-  def handle_call(:pop, _from, []) do
-    {:reply, [], []}
-  end
+  # def handle_call(:pop, _from, []) do
+  #   {:reply, [], []}
+  # end
 
+  @impl true
+  def terminate(_reason, current_stack) do
+    Stack.Stash.update(current_stack)
+  end
 end

@@ -8,17 +8,17 @@ defmodule Sequence.Stash do
   def start_link(opts) do
     init_arg = 123
 
-    opts = [{:name, :stash} | opts]
+    opts = [{:name, :sequence_stash} | opts]
     GenServer.start_link(__MODULE__, init_arg, opts)
   end
 
   # api
   def get() do
-    GenServer.call(:stash, :get)
+    GenServer.call(:sequence_stash, :get)
   end
 
   def update(new_number) do
-    GenServer.cast(:stash, {:update, new_number})
+    GenServer.cast(:sequence_stash, {:update, new_number})
   end
 
   # server

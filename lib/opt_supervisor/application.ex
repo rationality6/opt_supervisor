@@ -12,7 +12,7 @@ defmodule OptSupervisor.Application do
       {Sequence.Stash, []},
       {Sequence.Server, []},
       # stack
-      # {Stack.Stash, []},
+      {Stack.Stash, []},
       {Stack.Server, []}
     ]
 
