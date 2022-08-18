@@ -1,14 +1,16 @@
 defmodule Stack.Server do
   use GenServer
 
-  @typedoc "a value stored on the stack"
-  @type value :: any
-
-  @impl true
-  def init(list) do
-    {:ok, list}
+  def start_link(opts) do
+    initial_arg = []
+    opts = [{:name, :stack} | opts]
+    GenServer.start_link(__MODULE__, initial_arg, opts)
   end
 
+  @impl true
+  def init(_) do
+    {:ok, Stack.Stash.get()}
+  end
 
   @impl true
   def handle_call({:push, new_value}, _from, current) do
@@ -23,7 +25,12 @@ defmodule Stack.Server do
     {:reply, tail, tail}
   end
 
-  def handle_call(:pop, _from, []) do
-    {:reply, [], []}
+  # def handle_call(:pop, _from, []) do
+  #   {:reply, [], []}
+  # end
+
+  @impl true
+  def terminate(_reason, current_stack) do
+    Stack.Stash.update(current_stack)
   end
 end
