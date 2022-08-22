@@ -13,7 +13,10 @@ defmodule OptSupervisor.Application do
       {Sequence.Server, []},
       # stack
       {Stack.Stash, []},
-      {Stack.Server, []}
+      {Stack.Server, []},
+      # sort
+      {Sort.Stash, []},
+      {Sort.Server, []},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
