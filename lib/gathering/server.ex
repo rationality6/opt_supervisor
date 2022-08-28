@@ -2,7 +2,7 @@ defmodule Resources do
   defstruct gold: 0, woods: 0, oil: 0
 end
 
-defmodule Gettering do
+defmodule Gettering.Server do
   use GenServer
 
   def current() do
@@ -55,13 +55,13 @@ defmodule Gettering do
   end
 end
 
-Gettering.start_link()
+# Gettering.Server.start_link()
 
-Gettering.current() |> IO.inspect()
+# Gettering.Server.current() |> IO.inspect()
 
-Gettering.get_gold() |> IO.inspect()
-Gettering.get_woods() |> IO.inspect()
-Gettering.get_oil() |> IO.inspect()
-Gettering.get_gold() |> IO.inspect()
+# Gettering.Server.get_gold() |> IO.inspect()
+# Gettering.Server.get_woods() |> IO.inspect()
+# Gettering.Server.get_oil() |> IO.inspect()
+# Gettering.Server.get_gold() |> IO.inspect()
 
-Gettering.current() |> IO.inspect()
+# Gettering.Server.current() |> IO.inspect()
