@@ -1,4 +1,4 @@
-defmodule Resources do
+defmodule Gathering.Resources do
   defstruct gold: 0, woods: 0, oil: 0
 end
 
@@ -22,7 +22,7 @@ defmodule Gettering.Server do
   end
 
   def start_link() do
-    source = %Resources{}
+    source = %Gathering.Resources{}
     GenServer.start_link(__MODULE__, source, name: :resource)
   end
 

@@ -19,6 +19,7 @@ defmodule Sort.Stash do
   end
 
   # server
+  @impl true
   def init(initial_list) do
     {:ok, initial_list}
   end
@@ -30,6 +31,6 @@ defmodule Sort.Stash do
 
   @impl true
   def handle_cast({:update, new_list}, _current_number) do
-    {:reply, new_list}
+    {:noreply, new_list}
   end
 end

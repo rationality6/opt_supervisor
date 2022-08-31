@@ -17,6 +17,11 @@ defmodule OptSupervisor.Application do
       # sort
       {Sort.Stash, []},
       {Sort.Server, []},
+      # ticker
+      Ticker.Server,
+      Ticker.Client,
+      # key value
+      KeyValue.Server
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
