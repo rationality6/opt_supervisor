@@ -1,10 +1,9 @@
 defmodule Ticker.Client do
   use GenServer
-  @name :ticker_client
 
   # init
-  def start_link(_) do
-    GenServer.start_link(__MODULE__, :no_args, name: @name)
+  def start_link() do
+    GenServer.start_link(__MODULE__, :no_args)
   end
 
   @impl true
@@ -13,18 +12,24 @@ defmodule Ticker.Client do
   end
 
   # api
-  def tick_tock() do
-    GenServer.call(@name, :tick_tock)
+  def tick_tock(pid) do
+    GenServer.call(pid, :tick_tock)
   end
 
-  def current() do
-    GenServer.call(@name, :current)
+  def current(pid) do
+    GenServer.call(pid, :current)
   end
 
   # server
   @impl true
   def handle_call(:tick_tock, _from, state) do
     Ticker.Server.tock()
+    IO.inspect("tock on client")
+    {:reply, state, state}
+  end
+
+  @impl true
+  def handle_call(:tock, _from, state) do
     IO.inspect("tock on client")
     {:reply, state, state}
   end

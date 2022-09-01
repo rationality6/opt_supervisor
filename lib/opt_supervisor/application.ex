@@ -19,7 +19,6 @@ defmodule OptSupervisor.Application do
       {Sort.Server, []},
       # ticker
       Ticker.Server,
-      Ticker.Client,
       # key value
       KeyValue.Server
     ]

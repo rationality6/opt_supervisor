@@ -10,6 +10,7 @@ defmodule Ticker.Server do
 
   @impl true
   def init(init) do
+    :timer.send_interval(1000, :tick)
     {:ok, init}
   end
 
@@ -25,6 +26,13 @@ defmodule Ticker.Server do
 
   # server
   @impl true
+  def handle_info(:tick, clients) do
+    IO.inspect("tick from Server")
+    Enum.each clients, fn client -> send client, {:tock} end
+    {:noreply, clients}
+  end
+
+  @impl true
   def handle_call(:current, _from, state) do
     {:reply, state, state}
   end
@@ -34,9 +42,5 @@ defmodule Ticker.Server do
     {:reply, state, state}
   end
 
-  @impl true
-  def handle_call(:tock, _from, state) do
-    IO.inspect("tick from Server")
-    {:reply, state, state}
-  end
+
 end
