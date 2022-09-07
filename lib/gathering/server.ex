@@ -1,9 +1,7 @@
-defmodule Gathering.Resources do
-  defstruct gold: 0, woods: 0, oil: 0
-end
-
 defmodule Gettering.Server do
   use GenServer
+
+  alias Gathering.Resources, as: Resources
 
   def current() do
     GenServer.call(:resource, :current)

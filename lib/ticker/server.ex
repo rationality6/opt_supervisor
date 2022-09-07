@@ -42,5 +42,4 @@ defmodule Ticker.Server do
     {:reply, state, state}
   end
 
-
 end
